@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #e6fffa, #ffffff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .card {
+        background: white;
+        padding: 40px;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        max-width: 400px;
+        width: 90%;
+    }
+
+    .checkmark {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: #22c55e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 40px;
+    }
+
+    h1 {
+        margin: 10px 0;
+        color: #16a34a;
+    }
+
+    p {
+        color: #555;
+        font-size: 16px;
+    }
+
+    .btn {
+        margin-top: 20px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        background: #22c55e;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: #16a34a;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="checkmark">✔</div>
+    <h1>Payment Successful</h1>
+    <p>Your transaction has been completed successfully.</p>
+    <button class="btn" onclick="window.location.href='/'">
+        Go to Home
+    </button>
+</div>
+
+</body>
+</html>
