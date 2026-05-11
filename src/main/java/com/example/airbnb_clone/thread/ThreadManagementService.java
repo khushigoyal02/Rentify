@@ -31,7 +31,7 @@ public class ThreadManagementService {
     }
 
     @Async
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public void runInventoryGenerationThread(){
         if (inventoryGeneration)
             inventoryGenerationThread.run();

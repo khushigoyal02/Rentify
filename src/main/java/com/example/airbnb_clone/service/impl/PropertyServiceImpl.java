@@ -13,7 +13,6 @@ import com.example.airbnb_clone.request.FetchPropertyRequest;
 import com.example.airbnb_clone.request.PropertyProjection;
 import com.example.airbnb_clone.response.GenericResponse;
 import com.example.airbnb_clone.service.PropertyService;
-import com.example.airbnb_clone.storage.FileStorageService;
 import com.example.airbnb_clone.utils.ConstantManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +31,6 @@ public class PropertyServiceImpl implements PropertyService {
     private final PropertyAmenityRepo propertyAmenityRepo;
     private final CityRepository cityRepository;
     private final PropertyHelper propertyHelper;
-    private final FileStorageService fileStorageService;
 
     @Value("${file.upload.path}")
     private String basePath;
@@ -68,7 +66,7 @@ public class PropertyServiceImpl implements PropertyService {
         // function call
         String dirPath=basePath+'/'+"PROP"+propertyId;
         try {
-            fileStorageService.uploadImages(dirPath, photos);
+            propertyHelper.uploadImages(dirPath, photos);
         } catch (Exception e){
             throw new RuntimeException("Image Upload Failed");
         }

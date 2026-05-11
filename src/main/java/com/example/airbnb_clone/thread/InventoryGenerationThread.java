@@ -6,6 +6,7 @@ import com.example.airbnb_clone.helper.PropertyHelper;
 import com.example.airbnb_clone.repo.InventoryRepo;
 import com.example.airbnb_clone.repo.PropertyRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class InventoryGenerationThread implements Runnable{
     private final PropertyHelper propertyHelper;
     private final PropertyRepository propertyRepository;
@@ -28,6 +30,7 @@ public class InventoryGenerationThread implements Runnable{
             Optional<InventoryEntity> optionalInventory=inventoryRepo.findByDateAndPropertyId(date, property.getId());
             if (optionalInventory.isEmpty()) {
                 propertyHelper.createInventoryFor90Days(property, date);
+                log.info("Inventory generated for property id: "+property.getId());
             }
         }
     }
