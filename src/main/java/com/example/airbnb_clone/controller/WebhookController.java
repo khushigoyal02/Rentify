@@ -7,13 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("/webhook")
 @RequiredArgsConstructor
 @Slf4j
 public class WebhookController {
@@ -22,6 +19,7 @@ public class WebhookController {
 
     private final PaymentService paymentService;
 
+    @PostMapping("/payment")
     ResponseEntity<?> capturePayment(@RequestBody String payload, @RequestHeader("signatureHeader") String sigHeader){
         log.info("Webhook called");
         try {
@@ -29,7 +27,7 @@ public class WebhookController {
             paymentService.capturePayment(event);
             return ResponseEntity.noContent().build();
         } catch (Exception e){
-            throw new RuntimeException();
+            throw new RuntimeException("Webhook call failed");
         }
     }
 }
